@@ -1,0 +1,152 @@
+#N canvas 636 67 1280 969 16;
+#X obj 72 126 fft~;
+#X obj 73 201 tabwrite~ espectromagnitude;
+#X obj 126 126 tabwrite~ sinal;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array sinal 64 float 1;
+#A 0 0.910005 0.131423 -0.77054 -0.949095 -0.236588 0.698038 0.977307
+0.339063 -0.617514 -0.994338 -0.43764 0.529937 0.999995 0.531214 -0.436284
+-0.994181 -0.618695 0.337649 0.976987 0.699113 -0.235126 -0.948614
+-0.771502 0.129931 0.909387 0.835065 -0.0232311 -0.859719 -0.889067
+-0.0837184 0.800226 0.932903 0.189725 -0.731569 -0.966028 -0.293543
+0.654537 0.988104 0.394022 -0.569993 -0.998875 -0.489962 0.478944 0.998203
+0.58031 -0.382399 -0.986088 -0.664006 0.281481 0.962696 0.740109 -0.177327
+-0.928287 -0.807716 0.0711615 0.883233 0.86609 0.0358375 -0.828061
+-0.914552 -0.142408 0.763427 0.952529 0.247365;
+#X coords 0 1 63 -1 200 140 1;
+#X restore 988 58 graph;
+#N canvas 1 89 450 300 (subpatch) 0;
+#X array espectromagnitude 64 float 1;
+#A 0 0.0168649 0.0171113 0.0178881 0.0192823 0.0214812 0.0248435 0.03009
+0.0388423 0.0555697 0.0984993 0.426499 0.187578 0.0780982 0.0499393
+0.0370996 0.0297894 0.0250944 0.021844 0.0194711 0.0176774 0.0162833
+0.0151782 0.0142915 0.013572 0.0129859 0.0125083 0.0121206 0.0118129
+0.0115701 0.0113885 0.0112619 0.0111871 0.0111627 0.0111871 0.0112619
+0.0113885 0.0115701 0.0118129 0.0121206 0.0125083 0.0129859 0.013572
+0.0142915 0.0151782 0.0162833 0.0176774 0.0194711 0.021844 0.0250944
+0.0297894 0.0370996 0.0499393 0.0780982 0.187578 0.426499 0.0984994
+0.0555697 0.0388423 0.03009 0.0248435 0.0214812 0.0192823 0.0178881
+0.0171113;
+#X coords 0 1 63 -1 200 140 1;
+#X restore 987 248 graph;
+#X obj 72 342 until;
+#X obj 72 376 f;
+#X obj 118 376 + 1;
+#X msg 136 343 0;
+#X obj 98 553 tabread espectromagnitude;
+#X obj 152 491 f;
+#X obj 224 512 f;
+#X obj 98 584 expr max($f1 \, $f2) \; if ($f1>$f2 \, $f3 \, $f4);
+#X text 6 375 indice;
+#X obj 72 412 t f f f b b;
+#X obj 397 551 f;
+#X obj 522 552 f;
+#X obj 215 377 t f f;
+#X floatatom 397 585 10 0 0 0 - - -;
+#X floatatom 522 586 10 0 0 0 - - -;
+#X obj 262 444 t b b b b;
+#X obj 241 71 bng 15 250 50 0 empty empty Plotar_gráficos 17 7 0 16
+-262144 -1 -1;
+#X floatatom 512 858 10 0 0 0 Frequencia - -;
+#X text 151 468 max(temp);
+#X text 220 489 indmax(temp);
+#X text 393 521 max(final);
+#X text 517 524 indmax(final);
+#X msg 179 444 0;
+#X obj 72 277 t b b b;
+#X obj 73 41 inlet~;
+#X obj 501 44 inlet;
+#X msg 501 213 \; sinal resize \$1;
+#X msg 539 171 \; espectromagnitude resize \$1;
+#X obj 512 892 outlet;
+#X obj 511 660 tabread espectromagnitude $f1;
+#X obj 189 659 tabread espectromagnitude $f1-1;
+#X obj 811 661 tabread espectromagnitude $f1+1;
+#X obj 240 723 expr ($f1 - 2*$f2 + $f3)/2;
+#X obj 261 293 f;
+#X obj 390 286 expr ($f1/2)+1;
+#X floatatom 71 313 5 0 0 0 - - -;
+#X floatatom 490 119 5 0 0 0 - - -;
+#X obj 262 412 sel;
+#X obj 810 777 f;
+#X floatatom 803 826 5 0 0 0 - - -;
+#X obj 610 728 expr ($f2 - $f1)/2;
+#X obj 502 777 expr $f1 - ($f3/2*$f2);
+#X obj 511 829 expr $f1*44100.0/$f2;
+#X floatatom 432 810 5 0 0 0 - - -;
+#X obj 744 774 t b;
+#X obj 418 162 t b b;
+#X obj 582 142 block~;
+#X obj 73 162 expr~ sqrt($v1*$v1+$v2*$v2)/$f3;
+#X text 71 6 Renan Teruo Carneiro - N° USP 6.51416e+06;
+#X obj 71 246 bang~;
+#X connect 0 0 52 0;
+#X connect 0 1 52 1;
+#X connect 5 0 6 0;
+#X connect 6 0 14 0;
+#X connect 7 0 17 0;
+#X connect 8 0 6 1;
+#X connect 9 0 12 0;
+#X connect 10 0 12 1;
+#X connect 10 0 15 1;
+#X connect 11 0 12 3;
+#X connect 11 0 16 1;
+#X connect 12 0 10 1;
+#X connect 12 1 11 1;
+#X connect 14 0 7 0;
+#X connect 14 1 9 0;
+#X connect 14 2 12 2;
+#X connect 14 3 10 0;
+#X connect 14 4 11 0;
+#X connect 15 0 18 0;
+#X connect 16 0 19 0;
+#X connect 17 0 6 1;
+#X connect 17 1 42 0;
+#X connect 19 0 34 0;
+#X connect 19 0 35 0;
+#X connect 19 0 36 0;
+#X connect 19 0 46 0;
+#X connect 20 0 15 0;
+#X connect 20 1 16 0;
+#X connect 20 2 10 0;
+#X connect 20 3 11 0;
+#X connect 21 0 2 0;
+#X connect 21 0 1 0;
+#X connect 22 0 33 0;
+#X connect 27 0 10 1;
+#X connect 28 0 38 0;
+#X connect 28 1 8 0;
+#X connect 28 2 27 0;
+#X connect 29 0 0 0;
+#X connect 29 0 2 0;
+#X connect 30 0 41 0;
+#X connect 30 0 51 0;
+#X connect 34 0 37 1;
+#X connect 35 0 37 0;
+#X connect 35 0 45 0;
+#X connect 36 0 37 2;
+#X connect 36 0 45 1;
+#X connect 37 0 46 1;
+#X connect 38 0 40 0;
+#X connect 39 0 38 1;
+#X connect 39 0 42 1;
+#X connect 40 0 5 0;
+#X connect 41 0 32 0;
+#X connect 41 0 31 0;
+#X connect 41 0 39 0;
+#X connect 41 0 43 1;
+#X connect 41 0 50 0;
+#X connect 41 0 52 2;
+#X connect 42 0 20 0;
+#X connect 43 0 44 0;
+#X connect 44 0 47 1;
+#X connect 45 0 46 2;
+#X connect 46 0 48 0;
+#X connect 46 0 49 0;
+#X connect 47 0 22 0;
+#X connect 48 0 47 0;
+#X connect 49 0 43 0;
+#X connect 50 0 54 0;
+#X connect 50 1 21 0;
+#X connect 52 0 1 0;
+#X connect 54 0 28 0;
