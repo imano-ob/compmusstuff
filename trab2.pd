@@ -1,12 +1,12 @@
-#N canvas 469 73 621 449 10;
+#N canvas 1150 275 621 449 10;
 #X declare -lib windowing;
 #X text 99 5 Renan Teruo Carneiro - N° USP 6.51416e+06;
-#X obj 139 212 pitchtracker2;
+#X obj 140 211 pitchtracker2;
 #X obj 77 212 espectro;
-#X obj 77 265 absol;
+#X obj 78 263 absol;
 #X obj 118 265 ang;
-#X obj 73 124 inlet~;
-#X obj 128 124 inlet;
+#X obj 78 128 inlet~;
+#X obj 132 123 inlet;
 #X connect 2 0 3 0;
 #X connect 2 0 4 0;
 #X connect 2 1 3 1;
