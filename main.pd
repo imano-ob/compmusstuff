@@ -1,0 +1,23 @@
+#N canvas 3 54 450 300 10;
+#X declare -lib windowing;
+#X obj 77 66 adc~;
+#X obj 134 70 readsf~;
+#X obj 78 117 multiplex~;
+#X obj 255 37 vradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X text 274 34 32;
+#X text 276 49 64;
+#X text 274 64 128;
+#X text 275 79 256;
+#X text 275 94 512;
+#X text 275 110 1024;
+#X text 275 124 2048;
+#X text 278 17 comment;
+#X text 277 141 4096;
+#X obj 255 169 expr pow(2 \, $f1+5);
+#X obj 121 204 trab2;
+#X connect 0 0 2 0;
+#X connect 1 0 2 1;
+#X connect 2 0 14 0;
+#X connect 3 0 13 0;
+#X connect 13 0 14 1;

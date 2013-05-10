@@ -1,0 +1,11 @@
+#N canvas 3 55 450 300 10;
+#X obj 29 67 inlet~;
+#X obj 83 67 inlet~;
+#X obj 33 116 fexpr~ sqrt($x1^2 + $x2^2);
+#X obj 37 182 outlet~;
+#X obj 226 65 inlet;
+#X obj 226 99 block~;
+#X connect 0 0 2 0;
+#X connect 1 0 2 1;
+#X connect 2 0 3 0;
+#X connect 4 0 5 0;
